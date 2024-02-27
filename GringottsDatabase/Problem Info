@@ -1,0 +1,29 @@
+Task is to create table wizard_deposits using the Code First approach. The table should contain the following fields:
+
+· id – Primary Key (number in range [1, 231-1].
+
+· first_name – Text field with max length of 50 symbols.
+
+· last_name - Text field with max length of 60 symbols. Required
+
+· notes – Text field with max length of 1000 symbols
+
+· age – Required
+
+· magic_wand_creator – Text field with max length of 100 symbols
+
+· magic_wand_size – Number in range [1, 215-1]
+
+· deposit_group - Text field with max length of 20 symbols
+
+· deposit_start_date – Date and time field
+
+· deposit_amount – Floating point number field
+
+· deposit_interest - Floating point number field
+
+· deposit_charge - Floating point number field
+
+· deposit_expiration_date – Date and time field
+
+· is_deposit_expired – Boolean field
