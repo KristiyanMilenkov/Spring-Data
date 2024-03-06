@@ -1,9 +1,11 @@
 package com.example.bookshop;
 
+import com.example.bookshop.entities.AgeRestriction;
 import com.example.bookshop.entities.Author;
 import com.example.bookshop.entities.Book;
 import com.example.bookshop.repositories.AuthorRepository;
 import com.example.bookshop.repositories.BookRepository;
+import com.example.bookshop.services.BookService;
 import com.example.bookshop.services.SeedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 
 @Component
 public class ConsoleRunner implements CommandLineRunner {
@@ -19,12 +22,14 @@ public class ConsoleRunner implements CommandLineRunner {
     private final SeedService seedService;
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
+    private final BookService bookService;
 
     @Autowired
-    public ConsoleRunner(SeedService seedService, BookRepository bookRepository, AuthorRepository authorRepository) {
+    public ConsoleRunner(SeedService seedService, BookRepository bookRepository, AuthorRepository authorRepository, BookService bookService) {
         this.seedService = seedService;
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
+        this.bookService = bookService;
     }
 
     @Override
@@ -34,6 +39,22 @@ public class ConsoleRunner implements CommandLineRunner {
         // this.allAuthorsWithBooksBefore1990();
         //this.allAuthorsOrderByBooksCount();
         //this.allBooksByGeorgePowell();
+
+        //printBooksByAgeRestriction();
+    }
+
+    private void printBooksByAgeRestriction() {
+        Scanner scanner = new Scanner(System.in);
+        String restriction = scanner.nextLine();
+        try {
+            AgeRestriction ageRestriction = AgeRestriction.valueOf(restriction.toUpperCase());
+            List<String> titles = this.bookService.findAllByAgeRestriction(ageRestriction);
+            titles.forEach(System.out::println);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid age restriction");
+            return;
+        }
+
     }
 
     private void allAuthorsOrderByBooksCount() {
