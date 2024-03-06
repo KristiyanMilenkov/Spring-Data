@@ -43,16 +43,22 @@ public class ConsoleRunner implements CommandLineRunner {
         //this.allBooksByGeorgePowell();
         //printBooksByAgeRestriction();
         //printGoldenBooksWithLessThan5000Copies();
-        printBooksWithPriceOutOfRange();
+        // printBooksWithPriceOutOfRange();
+        printBooksNotIssuedAt();
+    }
+
+    private void printBooksNotIssuedAt() {
+        List<Book> titlesForBooksNotPublishedIn = bookService.findTitlesForBooksNotReleasedAtYear(2000);
+        titlesForBooksNotPublishedIn.forEach(b -> System.out.println(b.getTitle()));
     }
 
     private void printBooksWithPriceOutOfRange() {
-        bookService.findAllByPriceLessThanOrPriceGreaterThan(BigDecimal.valueOf(5), BigDecimal.valueOf(40))
-                .forEach(System.out::println);
+        List<Book> books = bookService.findAllByPriceLessThanOrPriceGreaterThan(BigDecimal.valueOf(5), BigDecimal.valueOf(40));
+        books.forEach(b -> System.out.println(b.getTitle() + " - $" + b.getPrice()));
     }
 
     private void printGoldenBooksWithLessThan5000Copies() {
-        bookService.findAllByEditionTypeAndCopiesLessThan(EditionType.GOLD, 5000)
+        bookService.findAllTitlesByEditionTypeAndCopiesLessThan(EditionType.GOLD, 5000)
                 .forEach(System.out::println);
     }
 
@@ -73,8 +79,8 @@ public class ConsoleRunner implements CommandLineRunner {
     private void allAuthorsOrderByBooksCount() {
         List<Author> authors = this.authorRepository.findAll();
         authors.stream()
-                        .sorted((l,r) -> r.getBooks().size() - l.getBooks().size())
-                        .forEach(author -> System.out.println(author.getFirstName() + " " + author.getLastName() + " " + author.getBooks().size()));
+                .sorted((l, r) -> r.getBooks().size() - l.getBooks().size())
+                .forEach(author -> System.out.println(author.getFirstName() + " " + author.getLastName() + " " + author.getBooks().size()));
 
     }
 
@@ -86,10 +92,11 @@ public class ConsoleRunner implements CommandLineRunner {
 
     private void booksAfter2000() {
         LocalDate year2000 = LocalDate.of(2000, 12, 31);
-        List<Book> books = this.bookRepository.findByReleaseDateAfter(year2000);
+        List<Book> books = this.bookRepository.findByReleaseDateNot(year2000);
 
         books.forEach(book -> System.out.println(book.getTitle()));
     }
+
     private void allBooksByGeorgePowell() {
         List<Book> books = this.bookRepository.findAll();
         books.stream()

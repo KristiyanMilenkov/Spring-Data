@@ -11,12 +11,14 @@ import java.time.LocalDate;
 import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
-    List<Book> findByReleaseDateAfter(LocalDate releaseDate);
+    List<Book> findByReleaseDateNot(LocalDate releaseDate);
 
     List<Book> findAllByAgeRestriction(AgeRestriction ageRestriction);
 
     List<Book> findAllByEditionTypeAndCopiesLessThan(EditionType editionType, int i);
 
     List<Book> findAllByPriceLessThanOrPriceGreaterThan(BigDecimal bigDecimal, BigDecimal bigDecimal1);
+
+    List<Book> findAllByReleaseDateLessThanOrReleaseDateGreaterThan(LocalDate releaseDate, LocalDate of);
 
 }

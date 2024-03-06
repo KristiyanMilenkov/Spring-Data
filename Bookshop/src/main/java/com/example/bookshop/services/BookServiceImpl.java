@@ -7,6 +7,7 @@ import com.example.bookshop.repositories.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,7 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public List<String> findAllByEditionTypeAndCopiesLessThan(EditionType editionType, int i) {
+    public List<String> findAllTitlesByEditionTypeAndCopiesLessThan(EditionType editionType, int i) {
         return bookRepository.findAllByEditionTypeAndCopiesLessThan(editionType, i)
                 .stream()
                 .map(Book::getTitle)
@@ -37,5 +38,14 @@ public class BookServiceImpl implements BookService{
     @Override
     public List<Book> findAllByPriceLessThanOrPriceGreaterThan(BigDecimal bigDecimal, BigDecimal bigDecimal1) {
         return bookRepository.findAllByPriceLessThanOrPriceGreaterThan(bigDecimal, bigDecimal1);
+    }
+
+    @Override
+    public List<Book> findTitlesForBooksNotReleasedAtYear(int year) {
+        return bookRepository.findAllByReleaseDateLessThanOrReleaseDateGreaterThan(
+                LocalDate.of(year,1,1),
+                LocalDate.of(year, 12, 31)
+                );
+
     }
 }

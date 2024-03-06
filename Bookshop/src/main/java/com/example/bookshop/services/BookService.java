@@ -10,7 +10,9 @@ import java.util.List;
 public interface BookService {
     List<String> findAllByAgeRestriction(AgeRestriction ageRestriction);
 
-    List<String> findAllByEditionTypeAndCopiesLessThan(EditionType editionType, int i);
+    List<String> findAllTitlesByEditionTypeAndCopiesLessThan(EditionType editionType, int i);
 
     List<Book> findAllByPriceLessThanOrPriceGreaterThan(BigDecimal bigDecimal, BigDecimal bigDecimal1);
+
+    public List<Book> findTitlesForBooksNotReleasedAtYear(int i);
 }
