@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
@@ -41,7 +42,13 @@ public class ConsoleRunner implements CommandLineRunner {
         //this.allAuthorsOrderByBooksCount();
         //this.allBooksByGeorgePowell();
         //printBooksByAgeRestriction();
-        printGoldenBooksWithLessThan5000Copies();
+        //printGoldenBooksWithLessThan5000Copies();
+        printBooksWithPriceOutOfRange();
+    }
+
+    private void printBooksWithPriceOutOfRange() {
+        bookService.findAllByPriceLessThanOrPriceGreaterThan(BigDecimal.valueOf(5), BigDecimal.valueOf(40))
+                .forEach(System.out::println);
     }
 
     private void printGoldenBooksWithLessThan5000Copies() {

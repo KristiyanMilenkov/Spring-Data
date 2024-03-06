@@ -6,6 +6,7 @@ import com.example.bookshop.entities.EditionType;
 import com.example.bookshop.repositories.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,5 +32,10 @@ public class BookServiceImpl implements BookService{
                 .stream()
                 .map(Book::getTitle)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Book> findAllByPriceLessThanOrPriceGreaterThan(BigDecimal bigDecimal, BigDecimal bigDecimal1) {
+        return bookRepository.findAllByPriceLessThanOrPriceGreaterThan(bigDecimal, bigDecimal1);
     }
 }

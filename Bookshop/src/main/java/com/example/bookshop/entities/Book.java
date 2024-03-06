@@ -125,4 +125,12 @@ public class Book {
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
