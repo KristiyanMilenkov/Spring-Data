@@ -5,6 +5,7 @@ import com.example.bookshop.entities.Book;
 import com.example.bookshop.entities.EditionType;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface BookService {
@@ -15,4 +16,6 @@ public interface BookService {
     List<Book> findAllByPriceLessThanOrPriceGreaterThan(BigDecimal bigDecimal, BigDecimal bigDecimal1);
 
     public List<Book> findTitlesForBooksNotReleasedAtYear(int i);
+
+    List<Book> findAllByReleaseDateLessThan(LocalDate localDate);
 }

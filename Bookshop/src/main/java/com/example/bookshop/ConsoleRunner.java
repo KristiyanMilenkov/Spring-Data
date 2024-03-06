@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -44,7 +45,16 @@ public class ConsoleRunner implements CommandLineRunner {
         //printBooksByAgeRestriction();
         //printGoldenBooksWithLessThan5000Copies();
         // printBooksWithPriceOutOfRange();
-        printBooksNotIssuedAt();
+        //printBooksNotIssuedAt();
+        printBookInfoForBooksReleasedBefore();
+    }
+
+    private void printBookInfoForBooksReleasedBefore() {
+        Scanner scanner = new Scanner(System.in);
+        String date = scanner.nextLine();
+        LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        List<Book> books = bookService.findAllByReleaseDateLessThan(localDate);
+        books.forEach(b -> System.out.println(b.getTitle() + " " + b.getEditionType() + " " + b.getPrice()));
     }
 
     private void printBooksNotIssuedAt() {

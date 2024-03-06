@@ -48,4 +48,9 @@ public class BookServiceImpl implements BookService{
                 );
 
     }
+
+    @Override
+    public List<Book> findAllByReleaseDateLessThan(LocalDate localDate) {
+        return bookRepository.findAllByReleaseDateLessThan(localDate);
+    }
 }
