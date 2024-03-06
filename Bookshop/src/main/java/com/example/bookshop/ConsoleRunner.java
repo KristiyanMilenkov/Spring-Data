@@ -3,6 +3,7 @@ package com.example.bookshop;
 import com.example.bookshop.entities.AgeRestriction;
 import com.example.bookshop.entities.Author;
 import com.example.bookshop.entities.Book;
+import com.example.bookshop.entities.EditionType;
 import com.example.bookshop.repositories.AuthorRepository;
 import com.example.bookshop.repositories.BookRepository;
 import com.example.bookshop.services.BookService;
@@ -39,8 +40,13 @@ public class ConsoleRunner implements CommandLineRunner {
         // this.allAuthorsWithBooksBefore1990();
         //this.allAuthorsOrderByBooksCount();
         //this.allBooksByGeorgePowell();
-
         //printBooksByAgeRestriction();
+        printGoldenBooksWithLessThan5000Copies();
+    }
+
+    private void printGoldenBooksWithLessThan5000Copies() {
+        bookService.findAllByEditionTypeAndCopiesLessThan(EditionType.GOLD, 5000)
+                .forEach(System.out::println);
     }
 
     private void printBooksByAgeRestriction() {

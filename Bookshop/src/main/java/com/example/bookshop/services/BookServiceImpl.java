@@ -2,6 +2,7 @@ package com.example.bookshop.services;
 
 import com.example.bookshop.entities.AgeRestriction;
 import com.example.bookshop.entities.Book;
+import com.example.bookshop.entities.EditionType;
 import com.example.bookshop.repositories.BookRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,14 @@ public class BookServiceImpl implements BookService{
     @Override
     public List<String> findAllByAgeRestriction(AgeRestriction ageRestriction) {
         return bookRepository.findAllByAgeRestriction(ageRestriction)
+                .stream()
+                .map(Book::getTitle)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllByEditionTypeAndCopiesLessThan(EditionType editionType, int i) {
+        return bookRepository.findAllByEditionTypeAndCopiesLessThan(editionType, i)
                 .stream()
                 .map(Book::getTitle)
                 .collect(Collectors.toList());

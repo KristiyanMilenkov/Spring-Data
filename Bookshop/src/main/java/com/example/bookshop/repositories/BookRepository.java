@@ -2,6 +2,7 @@ package com.example.bookshop.repositories;
 
 import com.example.bookshop.entities.AgeRestriction;
 import com.example.bookshop.entities.Book;
+import com.example.bookshop.entities.EditionType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> findByReleaseDateAfter(LocalDate releaseDate);
 
     List<Book> findAllByAgeRestriction(AgeRestriction ageRestriction);
+
+    List<Book> findAllByEditionTypeAndCopiesLessThan(EditionType editionType, int i);
 }
