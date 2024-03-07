@@ -52,7 +52,16 @@ public class ConsoleRunner implements CommandLineRunner {
         //printBookInfoForBooksReleasedBefore();
         //printNamesOfAuthorsWithEndingWith();
         //printBookTitlesContaining();
-        printBooksByAuthorLastNameStartsWith();
+        //printBooksByAuthorLastNameStartsWith();
+        //printCountOfBooksWithTitleLongerThan();
+        printTotalCopiesByAuthor();
+    }
+
+    private void printCountOfBooksWithTitleLongerThan() {
+        Scanner scanner = new Scanner(System.in);
+        int length = Integer.parseInt(scanner.nextLine());
+        int count = bookService.countOfBooksWithTitleLongerThan(length);
+        System.out.printf("There are %d books with longer title than %d symbols%n",count, length);
     }
 
     private void printBooksByAuthorLastNameStartsWith() {

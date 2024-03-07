@@ -63,4 +63,13 @@ public class BookServiceImpl implements BookService{
     public List<Book> findAllByAuthorLastNameStartsWith(String input) {
         return bookRepository.findAllByAuthorLastNameStartsWith(input);
     }
+
+    @Override
+    public int countOfBooksWithTitleLongerThan(int length) {
+        return bookRepository.findAll()
+                .stream()
+                .filter(b -> b.getTitle().length() > length)
+                .toList()
+                .size();
+    }
 }
