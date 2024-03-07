@@ -40,14 +40,14 @@ public class ConsoleRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //  seedService.seedAll();
-        // this.booksAfter2000();
-        // this.allAuthorsWithBooksBefore1990();
+        //seedService.seedAll();
+        //this.booksAfter2000();
+        //this.allAuthorsWithBooksBefore1990();
         //this.allAuthorsOrderByBooksCount();
         //this.allBooksByGeorgePowell();
         //printBooksByAgeRestriction();
         //printGoldenBooksWithLessThan5000Copies();
-        // printBooksWithPriceOutOfRange();
+        //printBooksWithPriceOutOfRange();
         //printBooksNotIssuedAt();
         //printBookInfoForBooksReleasedBefore();
         //printNamesOfAuthorsWithEndingWith();
@@ -55,7 +55,17 @@ public class ConsoleRunner implements CommandLineRunner {
         //printBooksByAuthorLastNameStartsWith();
         //printCountOfBooksWithTitleLongerThan();
         //printTotalCopiesByAuthor();
-        printInformationForTitle();
+        //printInformationForTitle();
+        increaseBookCopies();
+
+    }
+
+    private void increaseBookCopies() {
+        Scanner scanner = new Scanner(System.in);
+        String date = scanner.nextLine();
+        int copies = Integer.parseInt(scanner.nextLine());
+        int totalCopies = bookService.increaseCopies(date, copies);
+        System.out.printf("%d books are released after %s, so total of %d book copies were added", totalCopies, date, copies * totalCopies);
     }
 
     private void printInformationForTitle() {

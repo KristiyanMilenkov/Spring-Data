@@ -27,4 +27,6 @@ public interface BookService {
 
 
     Book findByTitle(String title);
+
+    int increaseCopies(String localDate, int copies);
 }

@@ -4,10 +4,12 @@ import com.example.bookshop.entities.AgeRestriction;
 import com.example.bookshop.entities.Book;
 import com.example.bookshop.entities.EditionType;
 import com.example.bookshop.repositories.BookRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,5 +78,12 @@ public class BookServiceImpl implements BookService{
     @Override
     public Book findByTitle(String title) {
         return bookRepository.findByTitle(title);
+    }
+
+    @Override
+    public int increaseCopies(String date, int copies) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        LocalDate after = LocalDate.parse(date, formatter);
+        return bookRepository.addCopiesToBooksAfter(after,copies);
     }
 }
