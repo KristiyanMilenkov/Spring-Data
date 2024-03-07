@@ -12,4 +12,5 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
 List<Author> findDistinctByBooksReleaseDateBefore(LocalDate releaseDate);
 
 
+    List<Author> findAllByFirstNameEndingWith(String ending);
 }

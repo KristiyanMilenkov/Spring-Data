@@ -5,6 +5,7 @@ import com.example.bookshop.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -21,5 +22,10 @@ private final AuthorRepository authorRepository;
         long size = this.authorRepository.count();
         int authorId = new Random().nextInt((int) size) + 1;
         return this.authorRepository.findById(authorId).get();
+    }
+
+    @Override
+    public List<Author> findAllByFirstNameEndingWith(String ending) {
+        return this.authorRepository.findAllByFirstNameEndingWith(ending);
     }
 }

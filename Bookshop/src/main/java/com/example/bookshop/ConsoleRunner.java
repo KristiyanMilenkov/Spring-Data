@@ -6,6 +6,7 @@ import com.example.bookshop.entities.Book;
 import com.example.bookshop.entities.EditionType;
 import com.example.bookshop.repositories.AuthorRepository;
 import com.example.bookshop.repositories.BookRepository;
+import com.example.bookshop.services.AuthorService;
 import com.example.bookshop.services.BookService;
 import com.example.bookshop.services.SeedService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,15 @@ public class ConsoleRunner implements CommandLineRunner {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final BookService bookService;
+    private final AuthorService authorService;
 
     @Autowired
-    public ConsoleRunner(SeedService seedService, BookRepository bookRepository, AuthorRepository authorRepository, BookService bookService) {
+    public ConsoleRunner(SeedService seedService, BookRepository bookRepository, AuthorRepository authorRepository, BookService bookService, AuthorService authorService) {
         this.seedService = seedService;
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
         this.bookService = bookService;
+        this.authorService = authorService;
     }
 
     @Override
@@ -46,7 +49,16 @@ public class ConsoleRunner implements CommandLineRunner {
         //printGoldenBooksWithLessThan5000Copies();
         // printBooksWithPriceOutOfRange();
         //printBooksNotIssuedAt();
-        printBookInfoForBooksReleasedBefore();
+        //printBookInfoForBooksReleasedBefore();
+        //printNamesOfAuthorsWithEndingWith();
+    }
+
+    private void printNamesOfAuthorsWithEndingWith() {
+        //find all authors with names ending with
+        Scanner scanner = new Scanner(System.in);
+        String ending = scanner.nextLine();
+        List<Author> authors = authorService.findAllByFirstNameEndingWith(ending);
+        authors.forEach(author -> System.out.println(author.getFirstName() + " " + author.getLastName()));
     }
 
     private void printBookInfoForBooksReleasedBefore() {
