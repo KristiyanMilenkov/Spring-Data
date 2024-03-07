@@ -58,4 +58,9 @@ public class BookServiceImpl implements BookService{
     public List<Book> findAllByTitleContaining(String input) {
         return bookRepository.findAllByTitleContaining(input);
     }
+
+    @Override
+    public List<Book> findAllByAuthorLastNameStartsWith(String input) {
+        return bookRepository.findAllByAuthorLastNameStartsWith(input);
+    }
 }

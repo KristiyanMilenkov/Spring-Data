@@ -51,7 +51,15 @@ public class ConsoleRunner implements CommandLineRunner {
         //printBooksNotIssuedAt();
         //printBookInfoForBooksReleasedBefore();
         //printNamesOfAuthorsWithEndingWith();
-        printBookTitlesContaining();
+        //printBookTitlesContaining();
+        printBooksByAuthorLastNameStartsWith();
+    }
+
+    private void printBooksByAuthorLastNameStartsWith() {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        List<Book> books = bookService.findAllByAuthorLastNameStartsWith(input);
+        books.forEach(b -> System.out.println(b.getTitle() + " (" + b.getAuthor().getFirstName() + " " + b.getAuthor().getLastName() + ")"));
     }
 
     private void printBookTitlesContaining() {

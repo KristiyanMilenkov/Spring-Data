@@ -20,4 +20,6 @@ public interface BookService {
     List<Book> findAllByReleaseDateLessThan(LocalDate localDate);
 
     List<Book> findAllByTitleContaining(String input);
+
+    List<Book> findAllByAuthorLastNameStartsWith(String input);
 }
