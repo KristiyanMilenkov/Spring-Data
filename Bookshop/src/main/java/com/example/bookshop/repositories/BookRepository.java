@@ -23,4 +23,5 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findAllByReleaseDateLessThan(LocalDate releaseDate);  //before works too!
 
+    List<Book> findAllByTitleContaining(String input);
 }

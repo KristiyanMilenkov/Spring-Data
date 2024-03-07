@@ -53,4 +53,9 @@ public class BookServiceImpl implements BookService{
     public List<Book> findAllByReleaseDateLessThan(LocalDate localDate) {
         return bookRepository.findAllByReleaseDateLessThan(localDate);
     }
+
+    @Override
+    public List<Book> findAllByTitleContaining(String input) {
+        return bookRepository.findAllByTitleContaining(input);
+    }
 }

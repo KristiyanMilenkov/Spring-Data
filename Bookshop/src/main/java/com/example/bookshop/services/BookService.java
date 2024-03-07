@@ -18,4 +18,6 @@ public interface BookService {
     public List<Book> findTitlesForBooksNotReleasedAtYear(int i);
 
     List<Book> findAllByReleaseDateLessThan(LocalDate localDate);
+
+    List<Book> findAllByTitleContaining(String input);
 }
