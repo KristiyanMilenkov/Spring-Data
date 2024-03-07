@@ -1,6 +1,8 @@
 package com.example.bookshop.services;
 
 import com.example.bookshop.entities.Author;
+import com.example.bookshop.entities.AuthorNamesWithTotalCopies;
+import com.example.bookshop.entities.Book;
 import com.example.bookshop.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +29,10 @@ private final AuthorRepository authorRepository;
     @Override
     public List<Author> findAllByFirstNameEndingWith(String ending) {
         return this.authorRepository.findAllByFirstNameEndingWith(ending);
+    }
+
+    @Override
+    public List<AuthorNamesWithTotalCopies> getWithTotalCopies() {
+        return this.authorRepository.getWithTotalCopies();
     }
 }

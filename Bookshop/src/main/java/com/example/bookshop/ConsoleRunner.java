@@ -57,6 +57,11 @@ public class ConsoleRunner implements CommandLineRunner {
         printTotalCopiesByAuthor();
     }
 
+    private void printTotalCopiesByAuthor() {
+       this.authorService.getWithTotalCopies()
+               .forEach(a -> System.out.println(a.getFirstName() + " " + a.getLastName() + " - " + a.getTotalCopies()));
+    }
+
     private void printCountOfBooksWithTitleLongerThan() {
         Scanner scanner = new Scanner(System.in);
         int length = Integer.parseInt(scanner.nextLine());

@@ -24,4 +24,6 @@ public interface BookService {
     List<Book> findAllByAuthorLastNameStartsWith(String input);
 
     int countOfBooksWithTitleLongerThan(int length);
+
+
 }
