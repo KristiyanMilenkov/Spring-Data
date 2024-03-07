@@ -54,7 +54,15 @@ public class ConsoleRunner implements CommandLineRunner {
         //printBookTitlesContaining();
         //printBooksByAuthorLastNameStartsWith();
         //printCountOfBooksWithTitleLongerThan();
-        printTotalCopiesByAuthor();
+        //printTotalCopiesByAuthor();
+        printInformationForTitle();
+    }
+
+    private void printInformationForTitle() {
+        Scanner scanner = new Scanner(System.in);
+        String title = scanner.nextLine();
+        Book book = bookService.findByTitle(title);
+        System.out.println(book.getTitle() + " " + book.getEditionType() + " " + book.getAgeRestriction() + " " + book.getPrice());
     }
 
     private void printTotalCopiesByAuthor() {

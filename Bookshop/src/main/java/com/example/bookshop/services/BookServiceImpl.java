@@ -72,4 +72,9 @@ public class BookServiceImpl implements BookService{
                 .toList()
                 .size();
     }
+
+    @Override
+    public Book findByTitle(String title) {
+        return bookRepository.findByTitle(title);
+    }
 }

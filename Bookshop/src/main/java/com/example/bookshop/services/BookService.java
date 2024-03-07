@@ -26,4 +26,5 @@ public interface BookService {
     int countOfBooksWithTitleLongerThan(int length);
 
 
+    Book findByTitle(String title);
 }
