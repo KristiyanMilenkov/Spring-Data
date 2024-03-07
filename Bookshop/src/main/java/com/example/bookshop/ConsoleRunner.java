@@ -56,8 +56,16 @@ public class ConsoleRunner implements CommandLineRunner {
         //printCountOfBooksWithTitleLongerThan();
         //printTotalCopiesByAuthor();
         //printInformationForTitle();
-        increaseBookCopies();
+        //increaseBookCopies();
+        removeBooks();
 
+    }
+
+    private void removeBooks() {
+        Scanner scanner = new Scanner(System.in);
+        int amount = Integer.parseInt(scanner.nextLine());
+        int removedBooks = bookService.removeBooksWithCopiesLessThan(amount);
+        System.out.printf("%d books were deleted", removedBooks);
     }
 
     private void increaseBookCopies() {

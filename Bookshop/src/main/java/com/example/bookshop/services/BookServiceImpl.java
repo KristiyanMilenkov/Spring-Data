@@ -86,4 +86,9 @@ public class BookServiceImpl implements BookService{
         LocalDate after = LocalDate.parse(date, formatter);
         return bookRepository.addCopiesToBooksAfter(after,copies);
     }
+
+    @Override
+    public int removeBooksWithCopiesLessThan(int amount) {
+        return this.bookRepository.deleteByCopiesLessThan(amount);
+    }
 }
